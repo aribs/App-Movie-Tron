@@ -1,4 +1,5 @@
 var selectedMovie 
+var score = 0;
 $(document).ready(function(){
 	$(".message").hide();
 	getMovie();
@@ -34,17 +35,31 @@ $(document).ready(function(){
 					getMovie();
 				}
 			};
-		});
-		$("#btnSend").on("click",function (){
+	function successScore(){
+		score = score + 100;
+		$("#score").text("Your Score: " + score);
+	};
+	function failScore(){
+		if(score > 0){score = score - 50;}
+		$("#score").text("Your Score: " + score);
+	}
+	$("#btnSend").on("click",function (){
 			var playerYear = $("#inputYear").val();
 			playerYear = parseInt(playerYear);
 			console.log(selectedMovie.Year);
 			if(playerYear === parseInt(selectedMovie.Year)){
 				$("#right").show();
+				successScore();
+				getMovie();
+				$("#inputYear").val("");
 				
 			}
 			else{
 				$("#wrong").show();
-
+				failScore();
+				$("#inputYear").val("");
+				getMovie();
 			}
+		});		
 });
+		

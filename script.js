@@ -1,4 +1,4 @@
-var selectedMovie 
+var selectedMovie; 
 var score = 0;
 $(document).ready(function(){
 	$(".message").hide();
